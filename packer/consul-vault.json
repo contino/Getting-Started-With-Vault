@@ -2,7 +2,16 @@
 
 "variables": {
 "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
-"aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}"
+"aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
+"region": "eu-west-2",
+"source_ami": "ami-a1f5e4c5",
+"instance_type": "t2.micro",
+"ssh_username": "ec2-user",
+"ami_name": "consul-vault-{{timestamp}}",
+"ami_virtualization_type": "hvm",
+"temporary_key_pair_name": "consul-vault-packer-keypair",
+"vpc_id": "vpc-cc2ef2a5",
+"subnet_id": "subnet-0791517c"
 },
 
 "provisioners":[
@@ -25,25 +34,25 @@
 "access_key": "{{user `aws_access_key`}}",
 "secret_key": "{{user `aws_secret_key`}}",
 
-"region": "eu-west-2",
+"region": "{{user `region`}}",
 
-"source_ami": "ami-a1f5e4c5",
+"source_ami": "{{user `source_ami`}}",
 
-"instance_type": "t2.micro",
+"instance_type": "{{user `instance_type`}}",
 
-"ssh_username": "ec2-user",
+"ssh_username": "{{user `ssh_username`}}",
 
-"ami_name": "consul-vault-{{timestamp}}",
+"ami_name": "{{user `ami_name`}}",
 
 "ami_description": "consul-vault base AMI",
 
 "ami_virtualization_type": "hvm",
 
-"temporary_key_pair_name": "consul-vault-packer-keypair",
+"temporary_key_pair_name": "{{user `temporary_key_pair_name`}}",
 
-"vpc_id": "vpc-cc2ef2a5",
+"vpc_id": "{{user `vpc_id`}}",
 
-"subnet_id": "subnet-0791517c",
+"subnet_id": "{{user `subnet_id`}}",
 
 "run_tags": {
 
